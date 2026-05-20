@@ -1,0 +1,276 @@
+'use client'
+
+import { useState, useEffect } from 'react'
+import Link from 'next/link'
+import NextImage from 'next/image'
+import { usePathname, useRouter } from 'next/navigation'
+import { motion, AnimatePresence } from 'framer-motion'
+import { Menu, X, ArrowLeft, ExternalLink } from 'lucide-react'
+
+const NAV_LINKS = [
+  { label: 'Home',       href: '/', color: '#22d3ee', glow: 'rgba(34,211,238,0.18)'  },
+  { label: 'About',      href: '/about',    color: '#a78bfa', glow: 'rgba(167,139,250,0.18)' },
+  { label: 'Contact Us', href: '/contact',  color: '#f472b6', glow: 'rgba(244,114,182,0.18)' },
+]
+
+export default function GenAINavbar() {
+  const pathname = usePathname()
+  const router = useRouter()
+  const [scrolled, setScrolled] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
+
+  const isHome = pathname === '/'
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 60)
+    window.addEventListener('scroll', handleScroll)
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? 'hidden' : ''
+    return () => { document.body.style.overflow = '' }
+  }, [mobileOpen])
+
+  return (
+    <>
+      <motion.nav
+        initial={{ y: -20, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        className="fixed top-0 inset-x-0 z-50 transition-all duration-300"
+        style={{
+          background: scrolled ? 'rgba(6,7,26,0.92)' : 'rgba(6,7,26,0.6)',
+          backdropFilter: 'blur(20px)',
+          borderBottom: scrolled ? '1px solid rgba(6,182,212,0.15)' : '1px solid transparent',
+        }}
+      >
+        {/* Back strip */}
+        <div
+          className="border-b"
+          style={{ borderColor: 'rgba(255,255,255,0.05)', background: 'rgba(0,0,0,0.15)' }}
+        >
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center h-8">
+            {isHome ? (
+              <a
+                href="https://techtelligence.ae"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-[11px] font-body font-semibold transition-all duration-200 hover:gap-2"
+                style={{ color: 'rgba(34,211,238,0.8)' }}
+              >
+                <ArrowLeft className="w-3 h-3" />
+                Back to TechTelligence.ae
+                <ExternalLink className="w-2.5 h-2.5 opacity-60" />
+              </a>
+            ) : (
+              <button
+                onClick={() => router.back()}
+                className="inline-flex items-center gap-1.5 text-[11px] font-body font-semibold transition-all duration-200 hover:gap-2"
+                style={{ color: 'rgba(167,139,250,0.8)' }}
+              >
+                <ArrowLeft className="w-3 h-3" />
+                Back
+              </button>
+            )}
+          </div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-20 lg:h-24">
+            {/* Logo → GenAI home */}
+            <Link href="/" className="flex items-center gap-3 flex-shrink-0">
+              <div style={{ mixBlendMode: 'screen' }}>
+                <NextImage
+                  src="/techtelligence-logo.png"
+                  alt="TechTelligence"
+                  width={80}
+                  height={80}
+                  className="object-contain"
+                  priority
+                />
+              </div>
+              <div className="hidden sm:block">
+                {/* Line 1: GenAI badge + "for Business" */}
+                <div className="flex items-center gap-1.5 leading-none">
+                  <span
+                    className="px-1.5 py-0.5 rounded text-[9px] font-body font-black tracking-widest uppercase"
+                    style={{
+                      background: 'linear-gradient(135deg, #06b6d4, #7c3aed)',
+                      color: '#fff',
+                      letterSpacing: '0.08em',
+                    }}
+                  >
+                    GenAI
+                  </span>
+                  <p
+                    className="text-[13px] font-body font-bold tracking-widest uppercase leading-none"
+                    style={{
+                      background: 'linear-gradient(90deg, #22d3ee 0%, #a78bfa 60%, #e879f9 100%)',
+                      WebkitBackgroundClip: 'text',
+                      WebkitTextFillColor: 'transparent',
+                      backgroundClip: 'text',
+                    }}
+                  >
+                    for Business
+                  </p>
+                </div>
+                {/* Line 2: Generative AI · SMB Program */}
+                <div className="flex items-center gap-1.5 mt-1 leading-none">
+                  <p
+                    className="text-[9px] font-body font-semibold tracking-[0.18em] uppercase"
+                    style={{ color: 'rgba(255,255,255,0.38)' }}
+                  >
+                    Generative AI
+                  </p>
+                  <span style={{ color: 'rgba(167,139,250,0.4)', fontSize: '8px' }}>·</span>
+                  <p
+                    className="text-[9px] font-body font-semibold tracking-[0.18em] uppercase"
+                    style={{ color: 'rgba(167,139,250,0.7)' }}
+                  >
+                    SMB Program
+                  </p>
+                </div>
+              </div>
+            </Link>
+
+            {/* Desktop Nav */}
+            <div className="hidden lg:flex items-center gap-1">
+              {NAV_LINKS.map((link) => {
+                const active = link.href === '/' ? pathname === '/' : (pathname === link.href || pathname?.startsWith(link.href + '/'))
+                return (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className="px-4 py-2 text-sm font-body font-semibold rounded-xl transition-all duration-200"
+                    style={{
+                      color: active ? link.color : 'rgba(255,255,255,0.65)',
+                      background: active ? link.glow : 'transparent',
+                      boxShadow: active ? `0 0 12px ${link.glow}` : 'none',
+                    }}
+                  >
+                    {link.label}
+                  </Link>
+                )
+              })}
+            </div>
+
+            {/* Desktop CTA */}
+            <div className="hidden lg:flex items-center">
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-display font-semibold text-sm"
+                style={{
+                  background: 'linear-gradient(135deg,#06b6d4,#0891b2)',
+                  color: '#06121c',
+                  boxShadow: '0 8px 24px rgba(6,182,212,0.25)',
+                }}
+              >
+                Book a Demo
+              </Link>
+            </div>
+
+            {/* Mobile hamburger */}
+            <button
+              className="lg:hidden p-2 rounded-lg text-white/70 hover:text-white transition-colors"
+              onClick={() => setMobileOpen(true)}
+              aria-label="Open menu"
+            >
+              <Menu className="w-5 h-5" />
+            </button>
+          </div>
+        </div>
+      </motion.nav>
+
+      {/* Mobile drawer */}
+      <AnimatePresence>
+        {mobileOpen && (
+          <>
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="fixed inset-0 z-[60] bg-black/60 backdrop-blur-sm lg:hidden"
+              onClick={() => setMobileOpen(false)}
+            />
+            <motion.div
+              initial={{ x: '100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '100%' }}
+              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+              className="fixed inset-y-0 right-0 z-[70] w-full max-w-xs flex flex-col lg:hidden"
+              style={{ background: '#0d0e2a', borderLeft: '1px solid rgba(6,182,212,0.15)' }}
+            >
+              <div
+                className="flex items-center justify-between p-5 border-b"
+                style={{ borderColor: 'rgba(6,182,212,0.12)' }}
+              >
+                <span className="font-display font-semibold text-white text-lg">Menu</span>
+                <button
+                  className="p-2 rounded-lg text-white/70 hover:text-white transition-colors"
+                  onClick={() => setMobileOpen(false)}
+                  aria-label="Close menu"
+                >
+                  <X className="w-5 h-5" />
+                </button>
+              </div>
+
+              <nav className="flex-1 overflow-y-auto p-5 space-y-1">
+                {NAV_LINKS.map((link) => (
+                  <Link
+                    key={link.label}
+                    href={link.href}
+                    className="block px-4 py-3 rounded-xl text-sm font-body font-medium text-white/75 hover:text-white hover:bg-white/5 transition-colors"
+                    onClick={() => setMobileOpen(false)}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+                <div className="pt-3 mt-3 border-t" style={{ borderColor: 'rgba(255,255,255,0.06)' }}>
+                  {isHome ? (
+                    <a
+                      href="https://techtelligence.ae"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-body font-medium transition-colors"
+                      style={{ color: 'rgba(34,211,238,0.8)' }}
+                      onClick={() => setMobileOpen(false)}
+                    >
+                      <ArrowLeft className="w-4 h-4" />
+                      Back to TechTelligence.ae
+                      <ExternalLink className="w-3 h-3 ml-auto opacity-50" />
+                    </a>
+                  ) : (
+                    <button
+                      className="flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-body font-medium w-full transition-colors"
+                      style={{ color: 'rgba(167,139,250,0.8)' }}
+                      onClick={() => { setMobileOpen(false); router.back() }}
+                    >
+                      <ArrowLeft className="w-4 h-4" />
+                      Back
+                    </button>
+                  )}
+                </div>
+              </nav>
+
+              <div className="p-5 border-t" style={{ borderColor: 'rgba(6,182,212,0.12)' }}>
+                <Link
+                  href="/contact"
+                  className="w-full flex items-center justify-center px-5 py-3 rounded-xl font-display font-semibold text-sm"
+                  style={{
+                    background: 'linear-gradient(135deg,#06b6d4,#0891b2)',
+                    color: '#06121c',
+                  }}
+                  onClick={() => setMobileOpen(false)}
+                >
+                  Book a Demo
+                </Link>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
+    </>
+  )
+}
