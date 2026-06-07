@@ -93,7 +93,7 @@ export default function GenAIOverviewClient() {
   const handleExploreMore = () => navigateTo(platformUrl)
 
   return (
-    <div style={{ background: '#06071a' }} className="overflow-x-hidden">
+    <div style={{ background: 'transparent' }} className="overflow-x-hidden">
       {/* ─────────────── HERO ─────────────── */}
       <section className="relative pt-32 pb-20 lg:pt-44 lg:pb-24 isolate overflow-hidden">
         <motion.div

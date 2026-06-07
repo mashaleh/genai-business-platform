@@ -72,7 +72,7 @@ const fadeUp = {
 
 export default function GenAIAboutPage() {
   return (
-    <div style={{ background: '#06071a' }} className="min-h-screen">
+    <div style={{ background: 'transparent' }} className="min-h-screen">
 
       {/* ── Hero ── */}
       <section className="relative pt-32 pb-20 lg:pt-44 lg:pb-28 isolate overflow-hidden">
@@ -112,7 +112,7 @@ export default function GenAIAboutPage() {
       </section>
 
       {/* ── Stats ── */}
-      <section className="pb-16" style={{ background: '#06071a' }}>
+      <section className="pb-16" style={{ background: 'rgba(8,21,35,0.45)' }}>
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
             {stats.map((s, i) => (
@@ -138,7 +138,7 @@ export default function GenAIAboutPage() {
       </section>
 
       {/* ── Our Story ── */}
-      <section className="py-20 lg:py-28" style={{ background: '#06071a' }}>
+      <section className="py-20 lg:py-28" style={{ background: 'rgba(8,21,35,0.45)' }}>
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <motion.div initial={{ opacity: 0, x: -24 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}>
@@ -208,7 +208,7 @@ export default function GenAIAboutPage() {
       </section>
 
       {/* ── Co-Founders ── */}
-      <section className="py-20 lg:py-28" style={{ background: '#06071a' }}>
+      <section className="py-20 lg:py-28" style={{ background: 'rgba(8,21,35,0.45)' }}>
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ duration: 0.6 }}
             className="text-center mb-14">

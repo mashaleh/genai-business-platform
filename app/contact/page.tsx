@@ -40,7 +40,7 @@ export default function GenAIContactPage() {
       {/* Hero */}
       <section
         className="relative pt-32 pb-20 lg:pt-40 lg:pb-28 isolate overflow-hidden"
-        style={{ background: '#06071a' }}
+        style={{ background: 'rgba(8,21,35,0.45)' }}
       >
         <div
           className="absolute top-1/4 right-0 w-[500px] h-[500px] rounded-full opacity-10 pointer-events-none"
@@ -83,7 +83,7 @@ export default function GenAIContactPage() {
       </section>
 
       {/* Contact content */}
-      <section className="pb-24 lg:pb-32" style={{ background: '#06071a' }}>
+      <section className="pb-24 lg:pb-32" style={{ background: 'rgba(8,21,35,0.45)' }}>
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-12">
             {/* Left info */}
@@ -233,9 +233,9 @@ export default function GenAIContactPage() {
                         value={form.type}
                         onChange={(e) => setForm({ ...form, type: e.target.value })}
                       >
-                        <option value="" disabled style={{ background: '#0d0e2a' }}>Select an option...</option>
+                        <option value="" disabled style={{ background: 'rgba(12,29,48,0.60)' }}>Select an option...</option>
                         {enquiryTypes.map((t) => (
-                          <option key={t} value={t} style={{ background: '#0d0e2a' }}>{t}</option>
+                          <option key={t} value={t} style={{ background: 'rgba(12,29,48,0.60)' }}>{t}</option>
                         ))}
                       </select>
                     </div>

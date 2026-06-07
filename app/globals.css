@@ -2,18 +2,88 @@
 @tailwind components;
 @tailwind utilities;
 
+@keyframes heroFloat {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33%       { transform: translate(28px, -36px) scale(1.05); }
+  66%       { transform: translate(-18px, 26px) scale(0.95); }
+}
+@keyframes constellationFloat {
+  0%, 100% { transform: translate(0, 0); }
+  33%       { transform: translate(6px, -10px); }
+  66%       { transform: translate(-5px, 6px); }
+}
+
+/*
+  Theme tokens.
+  DARK is the default look (:root) and is intentionally left untouched.
+  LIGHT is opt-in via the `.light` class on <html> (set pre-paint by the
+  no-flash script in layout.tsx, toggled by ThemeToggle) and mirrors the
+  stem.techtelligence.ae light palette (teal primary, neutral base, slate text).
+*/
 :root {
-  --bg-primary: #06071a;
-  --bg-card: rgba(255, 255, 255, 0.04);
-  --border-card: rgba(129, 140, 248, 0.18);
-  --indigo: #6366f1;
+  /* Dark (default) — exact intentionalai.techtelligence.ae dark palette */
+  --bg-primary: #081523;
+  --bg: #081523;
+  --bg-elevated: #0c1d30;
+  --bg-card: #11263c;
+  --surface: #11263c;
+  --surface-hover: #163251;
+  --border-card: #1f3b58;
+  --border: #1f3b58;
+  --border-soft: rgba(31, 59, 88, 0.55);
+  --indigo: #3a86ff;
   --violet: #8b5cf6;
-  --purple: #a855f7;
-  --pink: #ec4899;
-  --lavender: #818cf8;
-  --text-primary: #ffffff;
-  --text-muted: rgba(255, 255, 255, 0.45);
-  --text-subtle: rgba(255, 255, 255, 0.25);
+  --purple: #8b5cf6;
+  --pink: #ff2060;
+  --lavender: #2bc4b6;
+  --text-primary: #f1f6fb;
+  --fg: #f1f6fb;
+  --text-muted: #94adc4;
+  --fg-muted: #94adc4;
+  --text-subtle: #6b8299;
+  --fg-subtle: #6b8299;
+  --nav-bg: rgba(8, 21, 35, 0.6);
+  --nav-bg-scrolled: rgba(8, 21, 35, 0.92);
+  --dot: rgba(255, 255, 255, 0.04);
+  --brand-gradient: linear-gradient(110deg, #2bc4b6 0%, #3a86ff 52%, #8b5cf6 100%);
+  --brand-glow: rgba(58, 134, 255, 0.40);
+  --brand-glow-strong: rgba(58, 134, 255, 0.55);
+}
+
+/* Exact stem.techtelligence.ae light palette */
+html.light {
+  --bg-primary: #ffffff;
+  --bg: #ffffff;
+  --bg-elevated: #ffffff;
+  --bg-card: #ffffff;
+  --surface: #ffffff;
+  --surface-hover: #ffffff;
+  --border-card: #e5e7eb;
+  --border: #e5e7eb;
+  --text-primary: #111827;
+  --fg: #111827;
+  --text-muted: #4b5563;
+  --fg-muted: #4b5563;
+  --text-subtle: #6b7280;
+  --fg-subtle: #6b7280;
+  --nav-bg: rgba(255, 255, 255, 0.72);
+  --nav-bg-scrolled: rgba(255, 255, 255, 0.92);
+  --dot: rgba(75, 189, 179, 0.14);
+}
+
+/* Exact stem hero wash on <body> in light mode */
+html.light body {
+  background-color: #ffffff;
+  background-image: linear-gradient(135deg, #EDEBF7 0%, #D5F5F2 25%, #FFFFFF 50%, #DEF7EC 75%, #FCE7F3 100%);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+/* Brand gradient text → exact stem teal→purple in light (dark keeps original) */
+html.light .gradient-text {
+  background: linear-gradient(135deg, #4BBDB3, #7B6CB5) !important;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 * {
@@ -25,38 +95,40 @@ html {
 }
 
 body {
-  background-color: #06071a;
-  color: #ffffff;
+  background-color: var(--bg);
+  color: var(--fg);
   font-family: var(--font-bricolage), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* Dot grid overlay */
 .dot-grid {
-  background-image: radial-gradient(rgba(129, 140, 248, 0.12) 1px, transparent 1px);
+  background-image: radial-gradient(var(--dot) 1px, transparent 1px);
   background-size: 32px 32px;
 }
 
-/* Gradient text utility */
+/* Gradient text utility — dark: intentionalai teal→blue→purple */
 .gradient-text {
-  background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899);
+  background: linear-gradient(110deg, #2bc4b6 0%, #3a86ff 52%, #8b5cf6 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+  filter: drop-shadow(0 0 28px rgba(58, 134, 255, 0.40));
 }
 
 /* Card glass */
 .card-glass {
-  background: rgba(255, 255, 255, 0.04);
-  border: 1px solid rgba(129, 140, 248, 0.18);
+  background: var(--surface);
+  border: 1px solid var(--border);
   border-radius: 16px;
   transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
 }
 
 .card-glass:hover {
-  border-color: rgba(168, 85, 247, 0.45);
-  background: rgba(255, 255, 255, 0.07);
+  border-color: rgba(43, 196, 182, 0.45);
+  background: var(--surface-hover);
   transform: translateY(-4px);
 }
 
@@ -65,20 +137,37 @@ body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #06071a;
+  background: var(--bg);
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(99, 102, 241, 0.4);
+  background: rgba(58, 134, 255, 0.4);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(99, 102, 241, 0.6);
+  background: rgba(58, 134, 255, 0.6);
 }
 
 /* Focus visible */
 :focus-visible {
-  outline: 2px solid rgba(99, 102, 241, 0.6);
+  outline: 2px solid rgba(58, 134, 255, 0.6);
   outline-offset: 2px;
+}
+
+/* Dark aurora background — matches intentionalai.techtelligence.ae */
+html:not(.light) {
+  background-color: #112b41;
+  background-image:
+    radial-gradient(ellipse 80% 60% at 10% 10%,  rgba(43, 196, 182, 0.40), transparent),
+    radial-gradient(ellipse 70% 55% at 92% 20%,  rgba(58, 134, 255, 0.35), transparent),
+    radial-gradient(ellipse 70% 55% at 50% 50%,  rgba(43, 196, 182, 0.12), transparent),
+    radial-gradient(ellipse 65% 50% at 8%  88%,  rgba(232, 163, 44, 0.20), transparent),
+    radial-gradient(ellipse 65% 55% at 88% 80%,  rgba(58, 134, 255, 0.22), transparent),
+    radial-gradient(ellipse 60% 45% at 50% 95%,  rgba(43, 196, 182, 0.15), transparent);
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+}
+html:not(.light) body {
+  background-color: transparent;
 }
 
 @layer utilities {
@@ -86,3 +175,72 @@ body {
     text-wrap: balance;
   }
 }
+
+/* ════════════════════════════════════════════════════════════════════════
+   LIGHT THEME OVERRIDE LAYER
+   The components hardcode dark colors (inline styles + text-white utilities).
+   When <html> has `.light`, re-map those to the stem light palette.
+   `.keep-white` opts an element out (used for white text on coloured buttons).
+   ════════════════════════════════════════════════════════════════════════ */
+
+/* Solid dark backgrounds set via inline style → light surfaces */
+html.light [style*="#081523"],
+html.light [style*="#081523"] { background-color: var(--bg) !important; }
+html.light [style*="#0c1d30"],
+html.light [style*="#0C1D30"] { background-color: var(--bg-elevated) !important; }
+html.light [style*="#11263c"],
+html.light [style*="#11263C"] { background-color: var(--bg-elevated) !important; }
+
+/* Translucent dark nav backgrounds → translucent light */
+html.light [style*="rgba(8,21,35"],
+html.light [style*="rgba(8, 21, 35"] { background: var(--nav-bg) !important; }
+
+/* Translucent dark section bands → faint stem-tinted band */
+html.light [style*="rgba(12,29,48"],
+html.light [style*="rgba(12, 29, 48"] { background-color: rgba(75, 189, 179, 0.06) !important; }
+
+/* Logo screen-blend (drops dark logo bg) → normal on light */
+html.light [style*="blend-mode: screen"],
+html.light [style*="blend-mode:screen"] { mix-blend-mode: normal !important; }
+
+/* Class-based white text → slate (buttons opt out via .keep-white) */
+html.light .text-white:not(.keep-white):not(.gradient-text) { color: var(--fg) !important; }
+html.light .text-white\/85,
+html.light .text-white\/75,
+html.light .text-white\/70 { color: var(--fg-muted) !important; }
+
+/* Inline white text colours (various alphas) → slate / muted slate */
+html.light [style*="rgba(255,255,255,0.85"],
+html.light [style*="rgba(255, 255, 255, 0.85"],
+html.light [style*="rgba(255,255,255,0.8"],
+html.light [style*="rgba(255, 255, 255, 0.8"],
+html.light [style*="rgba(255,255,255,0.78"],
+html.light [style*="rgba(255,255,255,0.75"],
+html.light [style*="rgba(255,255,255,0.72"],
+html.light [style*="rgba(255,255,255,0.7"],
+html.light [style*="rgba(255,255,255,0.68"],
+html.light [style*="rgba(255,255,255,0.65"],
+html.light [style*="rgba(255,255,255,0.62"],
+html.light [style*="rgba(255,255,255,0.6"],
+html.light [style*="rgba(255, 255, 255, 0.6"] { color: var(--fg) !important; }
+
+html.light [style*="rgba(255,255,255,0.55"],
+html.light [style*="rgba(255,255,255,0.5"],
+html.light [style*="rgba(255, 255, 255, 0.5"],
+html.light [style*="rgba(255,255,255,0.45"],
+html.light [style*="rgba(255,255,255,0.4"],
+html.light [style*="rgba(255, 255, 255, 0.4"],
+html.light [style*="rgba(255,255,255,0.38"],
+html.light [style*="rgba(255,255,255,0.35"],
+html.light [style*="rgba(255,255,255,0.3"],
+html.light [style*="rgba(255,255,255,0.28"],
+html.light [style*="rgba(255,255,255,0.25"] { color: var(--fg-muted) !important; }
+
+/* Card-ish translucent white backgrounds → keep subtle on light */
+html.light [class*="bg-white/"] { background-color: rgba(17, 24, 39, 0.03) !important; }
+
+/* Light mode: recolour inline brand gradients (cyan/indigo) → exact stem teal→purple */
+html.light [style*="gradient"][style*="#06b6d4"],
+html.light [style*="gradient"][style*="#22d3ee"],
+html.light [style*="gradient"][style*="#6366f1"],
+html.light [style*="gradient"][style*="#8b5cf6"] { background-image: linear-gradient(135deg, #4BBDB3, #7B6CB5) !important; }

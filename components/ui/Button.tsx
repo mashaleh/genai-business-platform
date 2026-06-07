@@ -38,11 +38,11 @@ export default function Button({
 
   const variants = {
     primary:
-      'text-white shadow-lg shadow-indigo-500/20 hover:brightness-110 active:scale-[0.97]',
+      'keep-white text-white shadow-lg shadow-indigo-500/20 hover:brightness-110 active:scale-[0.97]',
     ghost:
-      'bg-transparent border border-[rgba(129,140,248,0.35)] text-white hover:bg-[rgba(139,92,246,0.12)] active:scale-[0.97]',
+      'bg-transparent border border-[var(--border)] text-[var(--fg)] hover:bg-[rgba(139,92,246,0.12)] active:scale-[0.97]',
     outline:
-      'bg-transparent border border-[rgba(129,140,248,0.35)] text-white hover:border-[rgba(168,85,247,0.6)] hover:bg-[rgba(168,85,247,0.08)] active:scale-[0.97]',
+      'bg-transparent border border-[var(--border)] text-[var(--fg)] hover:border-[rgba(168,85,247,0.6)] hover:bg-[rgba(168,85,247,0.08)] active:scale-[0.97]',
   }
 
   const primaryStyle =

@@ -264,7 +264,7 @@ export default function GenAIBusinessClient() {
   const goCorp = () => setInstructorOpen(true)
 
   return (
-    <div style={{ background: '#06071a' }} className="overflow-x-hidden">
+    <div style={{ background: 'transparent' }} className="overflow-x-hidden">
       {/* ─────────────── HERO ─────────────── */}
       <section className="relative pt-32 pb-20 lg:pt-44 lg:pb-24 isolate overflow-hidden">
         {/* animated glow orbs */}
@@ -1478,7 +1478,7 @@ function InstructorLedAccessModal({ open, onClose }: { open: boolean; onClose: (
                       style={{ background: 'linear-gradient(to bottom, transparent, rgba(255,255,255,0.12), transparent)' }} />
                     <div className="relative z-10 w-8 h-8 rounded-full flex items-center justify-center text-[10px] font-bold tracking-widest"
                       style={{
-                        background: '#0d0e2a',
+                        background: '#0c1d30',
                         border: '1px solid rgba(255,255,255,0.12)',
                         color: 'rgba(255,255,255,0.5)',
                       }}>

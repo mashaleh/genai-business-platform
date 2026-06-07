@@ -6,7 +6,7 @@ export default function GenAIFooter() {
   return (
     <footer
       className="border-t"
-      style={{ background: '#06071a', borderColor: 'rgba(6,182,212,0.1)' }}
+      style={{ background: 'rgba(8,21,35,0.70)', borderColor: 'rgba(43,196,182,0.15)' }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">

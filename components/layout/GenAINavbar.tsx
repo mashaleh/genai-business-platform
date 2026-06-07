@@ -6,6 +6,7 @@ import NextImage from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, ArrowLeft, ExternalLink } from 'lucide-react'
+import ThemeToggle from '@/components/ui/ThemeToggle'
 
 const NAV_LINKS = [
   { label: 'Home',       href: '/', color: '#22d3ee', glow: 'rgba(34,211,238,0.18)'  },
@@ -156,7 +157,8 @@ export default function GenAINavbar() {
             </div>
 
             {/* Desktop CTA */}
-            <div className="hidden lg:flex items-center">
+            <div className="hidden lg:flex items-center gap-3">
+              <ThemeToggle />
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-display font-semibold text-sm"
@@ -170,14 +172,17 @@ export default function GenAINavbar() {
               </Link>
             </div>
 
-            {/* Mobile hamburger */}
-            <button
-              className="lg:hidden p-2 rounded-lg text-white/70 hover:text-white transition-colors"
-              onClick={() => setMobileOpen(true)}
-              aria-label="Open menu"
-            >
-              <Menu className="w-5 h-5" />
-            </button>
+            {/* Mobile cluster */}
+            <div className="lg:hidden flex items-center gap-2">
+              <ThemeToggle />
+              <button
+                className="p-2 rounded-lg text-white/70 hover:text-white transition-colors"
+                onClick={() => setMobileOpen(true)}
+                aria-label="Open menu"
+              >
+                <Menu className="w-5 h-5" />
+              </button>
+            </div>
           </div>
         </div>
       </motion.nav>
@@ -200,7 +205,7 @@ export default function GenAINavbar() {
               exit={{ x: '100%' }}
               transition={{ type: 'spring', stiffness: 300, damping: 30 }}
               className="fixed inset-y-0 right-0 z-[70] w-full max-w-xs flex flex-col lg:hidden"
-              style={{ background: '#0d0e2a', borderLeft: '1px solid rgba(6,182,212,0.15)' }}
+              style={{ background: 'rgba(8,21,35,0.92)', borderLeft: '1px solid rgba(43,196,182,0.20)' }}
             >
               <div
                 className="flex items-center justify-between p-5 border-b"
