@@ -58,7 +58,7 @@ export function ConstellationBg() {
           const a = nodes[i], b = nodes[j]
           const dist = Math.hypot(a.x - b.x, a.y - b.y)
           if (dist < LINK) {
-            ctx!.globalAlpha = (1 - dist / LINK) * 0.28
+            ctx!.globalAlpha = (1 - dist / LINK) * 0.14
             ctx!.strokeStyle = a.c
             ctx!.lineWidth = 1
             ctx!.beginPath()
@@ -73,7 +73,7 @@ export function ConstellationBg() {
       ctx!.globalAlpha = 1
       for (const n of nodes) {
         ctx!.fillStyle = n.c
-        ctx!.globalAlpha = 0.8
+        ctx!.globalAlpha = 0.45
         ctx!.beginPath()
         ctx!.arc(n.x, n.y, n.r, 0, Math.PI * 2)
         ctx!.fill()
