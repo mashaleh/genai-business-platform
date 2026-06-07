@@ -41,15 +41,15 @@ export default function GenAINavbar() {
         transition={{ duration: 0.5 }}
         className="fixed top-0 inset-x-0 z-50 transition-all duration-300"
         style={{
-          background: scrolled ? 'rgba(6,7,26,0.92)' : 'rgba(6,7,26,0.6)',
+          background: scrolled ? 'rgba(8,21,35,0.88)' : 'rgba(8,21,35,0.55)',
           backdropFilter: 'blur(20px)',
-          borderBottom: scrolled ? '1px solid rgba(6,182,212,0.15)' : '1px solid transparent',
+          borderBottom: scrolled ? '1px solid rgba(43,196,182,0.18)' : '1px solid transparent',
         }}
       >
         {/* Back strip */}
         <div
           className="border-b"
-          style={{ borderColor: 'rgba(255,255,255,0.05)', background: 'rgba(0,0,0,0.15)' }}
+          style={{ borderColor: 'rgba(43,196,182,0.08)', background: 'rgba(8,21,35,0.40)' }}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center h-8">
             {isHome ? (
