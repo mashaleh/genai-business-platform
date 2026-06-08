@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import NextImage from 'next/image'
 import { usePathname, useRouter } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, ArrowLeft, ExternalLink } from 'lucide-react'
@@ -80,59 +79,9 @@ export default function GenAINavbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20 lg:h-24">
             {/* Logo → GenAI home */}
-            <Link href="/" className="flex items-center gap-3 flex-shrink-0">
-              <div style={{ mixBlendMode: 'screen' }}>
-                <NextImage
-                  src="/techtelligence-logo.png"
-                  alt="TechTelligence"
-                  width={80}
-                  height={80}
-                  className="object-contain"
-                  priority
-                />
-              </div>
-              <div className="hidden sm:block">
-                {/* Line 1: GenAI badge + "for Business" */}
-                <div className="flex items-center gap-1.5 leading-none">
-                  <span
-                    className="px-1.5 py-0.5 rounded text-[9px] font-body font-black tracking-widest uppercase"
-                    style={{
-                      background: 'linear-gradient(135deg, #06b6d4, #7c3aed)',
-                      color: '#fff',
-                      letterSpacing: '0.08em',
-                    }}
-                  >
-                    GenAI
-                  </span>
-                  <p
-                    className="text-[13px] font-body font-bold tracking-widest uppercase leading-none"
-                    style={{
-                      background: 'linear-gradient(90deg, #22d3ee 0%, #a78bfa 60%, #e879f9 100%)',
-                      WebkitBackgroundClip: 'text',
-                      WebkitTextFillColor: 'transparent',
-                      backgroundClip: 'text',
-                    }}
-                  >
-                    for Business
-                  </p>
-                </div>
-                {/* Line 2: Generative AI · SMB Program */}
-                <div className="flex items-center gap-1.5 mt-1 leading-none">
-                  <p
-                    className="text-[9px] font-body font-semibold tracking-[0.18em] uppercase"
-                    style={{ color: 'rgba(255,255,255,0.38)' }}
-                  >
-                    Generative AI
-                  </p>
-                  <span style={{ color: 'rgba(167,139,250,0.4)', fontSize: '8px' }}>·</span>
-                  <p
-                    className="text-[9px] font-body font-semibold tracking-[0.18em] uppercase"
-                    style={{ color: 'rgba(167,139,250,0.7)' }}
-                  >
-                    SMB Program
-                  </p>
-                </div>
-              </div>
+            <Link href="/" className="tt-logo" aria-label="TechTelligence home">
+              <span className="tt-logo-mark"><img src="/techtelligence-logo-new.png" alt="TechTelligence logo" /></span>
+              <span className="tt-logo-text"><strong>TechTelligence</strong><span>GenAI for Business</span></span>
             </Link>
 
             {/* Desktop Nav */}
