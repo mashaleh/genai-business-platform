@@ -42,8 +42,8 @@
   --fg-muted: #94adc4;
   --text-subtle: #6b8299;
   --fg-subtle: #6b8299;
-  --nav-bg: rgba(8, 21, 35, 0.6);
-  --nav-bg-scrolled: rgba(8, 21, 35, 0.92);
+  --nav-bg: linear-gradient(90deg, rgba(43,196,182,0.18) 0%, rgba(58,134,255,0.16) 50%, rgba(139,92,246,0.18) 100%);
+  --nav-bg-scrolled: linear-gradient(90deg, rgba(43,196,182,0.28) 0%, rgba(58,134,255,0.26) 50%, rgba(139,92,246,0.28) 100%);
   --dot: rgba(255, 255, 255, 0.04);
   --brand-gradient: linear-gradient(110deg, #2bc4b6 0%, #3a86ff 52%, #8b5cf6 100%);
   --brand-glow: rgba(58, 134, 255, 0.40);

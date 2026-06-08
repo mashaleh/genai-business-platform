@@ -9,7 +9,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        'bg-primary': '#06071a',
+        'bg-primary': '#081523',
         indigo: {
           400: '#818cf8',
           500: '#6366f1',
