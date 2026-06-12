@@ -255,10 +255,18 @@ html.light [style*="gradient"][style*="#8b5cf6"] { background-image: linear-grad
 html.light .tt-logo-mark::after{display:none}
 html.light .tt-logo-mark img{filter:contrast(1.07) saturate(1.05) drop-shadow(0 1px 2px rgba(8,32,60,.28))}
 .tt-logo-text{display:flex;flex-direction:column;line-height:1}
-.tt-logo-text strong{font-size:15.5px;font-weight:800;letter-spacing:.2px;line-height:1.1;background:linear-gradient(110deg,#99F6E4 0%,#7DD3FC 30%,#A5B4FC 60%,#D8B4FE 82%,#F5D0FE 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;color:transparent;animation:ttLogoShimmer 6s linear infinite;filter:drop-shadow(0 1px 2px rgba(8,21,35,.85))}
+.tt-logo-text strong{display:inline-flex;align-items:center;gap:7px;font-size:15.5px;font-weight:800;letter-spacing:.4px;line-height:1.1;background:linear-gradient(110deg,#99F6E4 0%,#7DD3FC 30%,#A5B4FC 60%,#D8B4FE 82%,#F5D0FE 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;color:transparent;animation:ttLogoShimmer 6s linear infinite;filter:drop-shadow(0 1px 2px rgba(8,21,35,.85));transition:letter-spacing .35s ease}
+.tt-logo:hover .tt-logo-text strong{letter-spacing:1.1px}
+/* "for Business" chip — the spoke accent, gently pulsing */
+.tt-logo-text .tt-biz{font-style:normal;font-size:10.5px;font-weight:800;letter-spacing:.6px;padding:3px 8px 2.5px;border-radius:7px;background:linear-gradient(125deg,#22D3EE 0%,#3B82F6 100%);color:#06121c;-webkit-text-fill-color:#06121c;white-space:nowrap;box-shadow:0 0 9px rgba(34,211,238,.45),inset 0 0 6px rgba(255,255,255,.3);transform:translateY(-.5px);animation:ttBizPulse 3.4s ease-in-out infinite;transition:box-shadow .3s ease}
+.tt-logo:hover .tt-biz{box-shadow:0 0 15px rgba(34,211,238,.75),0 0 26px rgba(59,130,246,.4),inset 0 0 8px rgba(255,255,255,.4)}
+@keyframes ttBizPulse{0%,100%{box-shadow:0 0 8px rgba(34,211,238,.4),inset 0 0 6px rgba(255,255,255,.25)}50%{box-shadow:0 0 15px rgba(59,130,246,.65),inset 0 0 7px rgba(255,255,255,.35)}}
 html.light .tt-logo-text strong{background-image:linear-gradient(110deg,#0F766E 0%,#1D4ED8 45%,#7C3AED 78%,#C026D3 100%);filter:none}
-.tt-logo-text span{font-size:10px;font-weight:800;margin-top:3px;letter-spacing:2px;background:linear-gradient(90deg,#99F6E4 0%,#93C5FD 45%,#D8B4FE 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;color:transparent;animation:ttLogoShimmer 6s linear infinite reverse;text-transform:uppercase;filter:drop-shadow(0 1px 2px rgba(8,21,35,.85))}
-html.light .tt-logo-text span{background-image:linear-gradient(90deg,#0E7490 0%,#4338CA 50%,#7C3AED 100%);filter:none}
+.tt-logo-text > span{display:inline-flex;align-items:center;gap:6px;font-size:9.5px;font-weight:800;margin-top:4px;letter-spacing:2.2px;white-space:nowrap;background:linear-gradient(90deg,#99F6E4 0%,#93C5FD 45%,#D8B4FE 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;color:transparent;animation:ttLogoShimmer 6s linear infinite reverse;text-transform:uppercase;filter:drop-shadow(0 1px 2px rgba(8,21,35,.85))}
+.tt-logo-text > span::before,.tt-logo-text > span::after{content:"";height:1px;flex:0 0 12px;background:linear-gradient(90deg,transparent,#3B82F6 55%,#A78BFA);opacity:.8}
+.tt-logo-text > span::after{background:linear-gradient(90deg,#A78BFA,#22D3EE 45%,transparent)}
+html.light .tt-logo-text > span{background-image:linear-gradient(90deg,#0E7490 0%,#4338CA 50%,#7C3AED 100%);filter:none}
+html.light .tt-logo-text .tt-biz{-webkit-text-fill-color:#fff;color:#fff}
 .tt-logo:hover .tt-logo-mark{transform:translateY(-2px) scale(1.05)}
 .tt-logo:hover .tt-logo-mark img{filter:drop-shadow(0 0 3px rgba(255,255,255,.95)) drop-shadow(0 0 10px rgba(255,255,255,.5))}
 @keyframes ttLogoRingSpin{to{--tt-logo-hue:360deg}}

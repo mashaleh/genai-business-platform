@@ -84,7 +84,7 @@ export default function GenAINavbar() {
             {/* Logo → GenAI home */}
             <Link href="/" className="tt-logo" aria-label="Intentional AI for Business — home">
               <span className="tt-logo-mark"><img src="/techtelligence-logo-new.png" alt="Intentional AI for Business by TechTelligence logo" /></span>
-              <span className="tt-logo-text"><strong>Intentional AI for Business</strong><span>by TechTelligence</span></span>
+              <span className="tt-logo-text"><strong>Intentional AI<i className="tt-biz">for Business</i></strong><span>by TechTelligence</span></span>
             </Link>
 
             {/* Desktop Nav */}
