@@ -45,18 +45,24 @@ const stats = [
 const founders = [
   {
     name: 'Dr. Osama S. Al Mashaleh',
-    title: 'Co-Founder & CEO',
+    role: 'Co-Founder & CEO',
+    title: 'Chief Executive Officer',
     bio: 'Dr. Osama leads TechTelligence\'s vision of making Generative AI accessible and practical for every business in the region. With deep expertise in AI strategy and digital transformation, he drives the programs that help SMBs move from AI curiosity to real competitive advantage.',
-    image: 'https://academy.techtelligence.ae/team-osama.jpg',
+    tags: ['AI Strategy', 'Digital Transformation', 'SMB Advisory', 'Strategic Vision'],
+    image: '/team-osama.jpg',
     initials: 'OA',
+    color: '#22d3ee',
     gradient: 'linear-gradient(135deg, #06b6d4, #7c3aed)',
   },
   {
     name: 'Eng. Israa Lulu',
-    title: 'Co-Founder & Chief AI & Learning Officer',
+    role: 'Co-Founder & CAILO',
+    title: 'Chief AI & Learning Officer',
     bio: 'Israa architects the learning and implementation frameworks that make AI adoption stick. Her expertise in AI systems and adult learning design ensures that every business leader who goes through the program walks away with tools and confidence they can use immediately.',
-    image: 'https://academy.techtelligence.ae/team-israa.png',
+    tags: ['AI & Learning Design', 'Implementation Frameworks', 'Programme Leadership', 'Adult Learning'],
+    image: '/team-israa.png',
     initials: 'IL',
+    color: '#a78bfa',
     gradient: 'linear-gradient(135deg, #a78bfa, #ec4899)',
   },
 ]
@@ -245,10 +251,22 @@ export default function GenAIAboutPage() {
                   </div>
                   <div>
                     <h3 className="font-display font-bold text-lg text-white leading-tight">{f.name}</h3>
-                    <p className="font-body text-sm mt-0.5" style={{ color: '#22d3ee' }}>{f.title}</p>
+                    <p className="font-body text-xs font-bold tracking-[0.12em] uppercase mt-1" style={{ color: f.color }}>{f.role}</p>
+                    <p className="font-body text-sm mt-0.5" style={{ color: 'rgba(255,255,255,0.55)' }}>{f.title}</p>
                   </div>
                 </div>
-                <p className="font-body text-sm leading-relaxed" style={{ color: 'rgba(255,255,255,0.6)' }}>{f.bio}</p>
+                <p className="font-body text-sm leading-relaxed mb-5" style={{ color: 'rgba(255,255,255,0.6)' }}>{f.bio}</p>
+                <div className="flex flex-wrap gap-2">
+                  {f.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="px-3 py-1 rounded-full text-xs font-body font-medium"
+                      style={{ background: `${f.color}14`, border: `1px solid ${f.color}40`, color: f.color }}
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
               </motion.div>
             ))}
           </div>
@@ -272,11 +290,13 @@ export default function GenAIAboutPage() {
                 Explore the Program
                 <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
               </Link>
-              <Link href="/contact"
+              <a href="https://calendly.com/almashaleh-techtelligence/30min"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl font-display font-semibold text-sm"
                 style={{ background: 'transparent', border: '1px solid rgba(255,255,255,0.12)', color: 'rgba(255,255,255,0.75)' }}>
                 Book a Demo
-              </Link>
+              </a>
             </div>
           </motion.div>
         </div>

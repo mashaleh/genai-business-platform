@@ -13,25 +13,24 @@ export default function GenAIFooter() {
           {/* Brand */}
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <div style={{ mixBlendMode: 'screen' }}>
-                <NextImage
-                  src="/techtelligence-logo.png"
-                  alt="TechTelligence"
-                  width={56}
-                  height={56}
-                  className="object-contain"
-                />
-              </div>
+              <NextImage
+                src="/techtelligence-logo-new.png"
+                alt="Intentional AI for Business by TechTelligence"
+                width={64}
+                height={64}
+                className="object-contain"
+                style={{ filter: 'drop-shadow(0 0 2px rgba(255,255,255,.8)) drop-shadow(0 0 7px rgba(255,255,255,.35))' }}
+              />
               <div>
                 <p
-                  className="text-[10px] font-body font-bold tracking-widest uppercase leading-none"
+                  className="text-[11px] font-body font-bold tracking-widest uppercase leading-none"
                   style={{ color: '#22d3ee' }}
                 >
-                  GenAI for Business
+                  Intentional AI for Business
                 </p>
                 <p
-                  className="text-[9px] font-body font-medium tracking-wider uppercase leading-none mt-0.5"
-                  style={{ color: 'rgba(255,255,255,0.35)' }}
+                  className="text-[9px] font-body font-medium tracking-wider uppercase leading-none mt-1"
+                  style={{ color: 'rgba(255,255,255,0.4)' }}
                 >
                   by TechTelligence · SMB Program
                 </p>
@@ -41,7 +40,7 @@ export default function GenAIFooter() {
               className="font-body text-xs leading-relaxed"
               style={{ color: 'rgba(255,255,255,0.4)' }}
             >
-              The dedicated GenAI for Business program for SMBs across the UAE &amp; MENA —
+              The dedicated Intentional AI for Business program for SMBs across the UAE &amp; MENA —
               helping small and medium enterprises harness Generative AI.
             </p>
           </div>

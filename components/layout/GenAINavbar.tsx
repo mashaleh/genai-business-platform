@@ -40,15 +40,18 @@ export default function GenAINavbar() {
         transition={{ duration: 0.5 }}
         className="fixed top-0 inset-x-0 z-50 transition-all duration-300"
         style={{
-          background: scrolled ? 'rgba(8,21,35,0.88)' : 'rgba(8,21,35,0.55)',
-          backdropFilter: 'blur(20px)',
-          borderBottom: scrolled ? '1px solid rgba(43,196,182,0.18)' : '1px solid transparent',
+          // family behavior: transparent at rest, frosted glass on scroll
+          background: scrolled ? 'rgba(8,21,35,0.85)' : 'transparent',
+          backdropFilter: scrolled ? 'saturate(160%) blur(16px)' : 'none',
+          WebkitBackdropFilter: scrolled ? 'saturate(160%) blur(16px)' : 'none',
+          borderBottom: scrolled ? '1px solid rgba(31,59,88,0.55)' : '1px solid transparent',
+          boxShadow: scrolled ? '0 10px 30px -24px #000' : 'none',
         }}
       >
         {/* Back strip */}
         <div
-          className="border-b"
-          style={{ borderColor: 'rgba(43,196,182,0.08)', background: 'rgba(8,21,35,0.40)' }}
+          className="border-b transition-colors duration-300"
+          style={{ borderColor: scrolled ? 'rgba(43,196,182,0.08)' : 'transparent', background: 'transparent' }}
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center h-8">
             {isHome ? (
@@ -79,9 +82,9 @@ export default function GenAINavbar() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-20 lg:h-24">
             {/* Logo → GenAI home */}
-            <Link href="/" className="tt-logo" aria-label="TechTelligence home">
-              <span className="tt-logo-mark"><img src="/techtelligence-logo-new.png" alt="TechTelligence logo" /></span>
-              <span className="tt-logo-text"><strong>TechTelligence</strong><span>GenAI for Business</span></span>
+            <Link href="/" className="tt-logo" aria-label="Intentional AI for Business — home">
+              <span className="tt-logo-mark"><img src="/techtelligence-logo-new.png" alt="Intentional AI for Business by TechTelligence logo" /></span>
+              <span className="tt-logo-text"><strong>Intentional AI for Business</strong><span>by TechTelligence</span></span>
             </Link>
 
             {/* Desktop Nav */}
@@ -92,9 +95,13 @@ export default function GenAINavbar() {
                   <Link
                     key={link.label}
                     href={link.href}
-                    className="px-4 py-2 text-sm font-body font-semibold rounded-xl transition-all duration-200"
+                    className="px-4 py-2 text-sm font-body font-bold rounded-xl transition-all duration-200"
                     style={{
-                      color: active ? link.color : 'rgba(255,255,255,0.65)',
+                      // each tab carries its own colour at all times — bright and legible
+                      // over the transparent bar; active state adds the glow chip
+                      color: link.color,
+                      opacity: active ? 1 : 0.92,
+                      textShadow: '0 1px 8px rgba(8,21,35,0.65)',
                       background: active ? link.glow : 'transparent',
                       boxShadow: active ? `0 0 12px ${link.glow}` : 'none',
                     }}
@@ -108,8 +115,10 @@ export default function GenAINavbar() {
             {/* Desktop CTA */}
             <div className="hidden lg:flex items-center gap-3">
               <ThemeToggle />
-              <Link
-                href="/contact"
+              <a
+                href="https://calendly.com/almashaleh-techtelligence/30min"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-display font-semibold text-sm"
                 style={{
                   background: 'linear-gradient(135deg,#06b6d4,#0891b2)',
@@ -118,7 +127,7 @@ export default function GenAINavbar() {
                 }}
               >
                 Book a Demo
-              </Link>
+              </a>
             </div>
 
             {/* Mobile cluster */}
@@ -209,8 +218,10 @@ export default function GenAINavbar() {
               </nav>
 
               <div className="p-5 border-t" style={{ borderColor: 'rgba(6,182,212,0.12)' }}>
-                <Link
-                  href="/contact"
+                <a
+                  href="https://calendly.com/almashaleh-techtelligence/30min"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-full flex items-center justify-center px-5 py-3 rounded-xl font-display font-semibold text-sm"
                   style={{
                     background: 'linear-gradient(135deg,#06b6d4,#0891b2)',
@@ -219,7 +230,7 @@ export default function GenAINavbar() {
                   onClick={() => setMobileOpen(false)}
                 >
                   Book a Demo
-                </Link>
+                </a>
               </div>
             </motion.div>
           </>

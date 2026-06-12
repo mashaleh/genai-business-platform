@@ -248,15 +248,19 @@ html.light [style*="gradient"][style*="#8b5cf6"] { background-image: linear-grad
 /* ── TechTelligence animated brand lockup (canonical, namespaced) ── */
 @property --tt-logo-hue{syntax:'<angle>';inherits:false;initial-value:0deg;}
 .tt-logo{display:inline-flex;align-items:center;gap:11px;text-decoration:none;flex-shrink:0}
-.tt-logo-mark{width:52px;height:52px;border-radius:15px;background:radial-gradient(circle at 50% 40%,#ffffff 0%,#eef7ff 60%,#dbeafb 100%);display:flex;align-items:center;justify-content:center;flex-shrink:0;padding:6px;position:relative;isolation:isolate;box-shadow:0 3px 12px rgba(6,182,212,.20),0 2px 6px rgba(0,0,0,.30),inset 0 1px 0 rgba(255,255,255,.85);transition:transform .4s cubic-bezier(.34,1.56,.64,1),box-shadow .4s ease}
-.tt-logo-mark::before{content:"";position:absolute;inset:-2px;border-radius:inherit;padding:2px;background:conic-gradient(from var(--tt-logo-hue),#22D3EE,#3B82F6,#A78BFA,#EC4899,#F59E0B,#22D3EE);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;animation:ttLogoRingSpin 7s linear infinite;opacity:.9;z-index:0}
-.tt-logo-mark::after{content:"";position:absolute;inset:-7px;border-radius:20px;background:radial-gradient(circle,transparent 42%,rgba(34,211,238,.5) 60%,rgba(59,130,246,.2) 74%,transparent 84%);filter:blur(5px);z-index:-1;animation:ttLogoAura 3.6s ease-in-out infinite}
-.tt-logo-mark img{width:100%;height:100%;object-fit:contain;display:block;filter:brightness(1.06) contrast(1.06) drop-shadow(0 1px 1px rgba(10,40,80,.18));position:relative;z-index:1}
+.tt-logo-mark{width:54px;height:54px;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative;isolation:isolate;transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+/* Frameless mark — soft halo only (no white chip / spinning ring) */
+.tt-logo-mark::after{content:"";position:absolute;inset:-6px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.42) 0%,rgba(255,255,255,.22) 46%,rgba(255,255,255,.07) 66%,transparent 78%);filter:blur(3px);z-index:-1}
+.tt-logo-mark img{width:100%;height:100%;object-fit:contain;display:block;filter:drop-shadow(0 0 2px rgba(255,255,255,.85)) drop-shadow(0 0 7px rgba(255,255,255,.4));position:relative;z-index:1}
+html.light .tt-logo-mark::after{display:none}
+html.light .tt-logo-mark img{filter:contrast(1.07) saturate(1.05) drop-shadow(0 1px 2px rgba(8,32,60,.28))}
 .tt-logo-text{display:flex;flex-direction:column;line-height:1}
-.tt-logo-text strong{font-size:17px;font-weight:800;letter-spacing:-.3px;line-height:1.1;background:linear-gradient(110deg,#FCD34D 0%,#F59E0B 25%,#EC4899 50%,#A78BFA 75%,#06B6D4 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;color:transparent;animation:ttLogoShimmer 6s linear infinite}
-.tt-logo-text span{font-size:10px;font-weight:800;margin-top:3px;letter-spacing:2px;background:linear-gradient(90deg,#06B6D4 0%,#3B82F6 33%,#A78BFA 66%,#F59E0B 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;color:transparent;animation:ttLogoShimmer 6s linear infinite reverse;text-transform:uppercase}
-.tt-logo:hover .tt-logo-mark{transform:translateY(-2px) scale(1.05);box-shadow:0 8px 22px rgba(6,182,212,.45),0 3px 8px rgba(0,0,0,.4),inset 0 1px 0 rgba(255,255,255,.95)}
-.tt-logo:hover .tt-logo-mark::before{opacity:1;animation-duration:2.5s}
+.tt-logo-text strong{font-size:15.5px;font-weight:800;letter-spacing:.2px;line-height:1.1;background:linear-gradient(110deg,#99F6E4 0%,#7DD3FC 30%,#A5B4FC 60%,#D8B4FE 82%,#F5D0FE 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;color:transparent;animation:ttLogoShimmer 6s linear infinite;filter:drop-shadow(0 1px 2px rgba(8,21,35,.85))}
+html.light .tt-logo-text strong{background-image:linear-gradient(110deg,#0F766E 0%,#1D4ED8 45%,#7C3AED 78%,#C026D3 100%);filter:none}
+.tt-logo-text span{font-size:10px;font-weight:800;margin-top:3px;letter-spacing:2px;background:linear-gradient(90deg,#99F6E4 0%,#93C5FD 45%,#D8B4FE 100%);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;color:transparent;animation:ttLogoShimmer 6s linear infinite reverse;text-transform:uppercase;filter:drop-shadow(0 1px 2px rgba(8,21,35,.85))}
+html.light .tt-logo-text span{background-image:linear-gradient(90deg,#0E7490 0%,#4338CA 50%,#7C3AED 100%);filter:none}
+.tt-logo:hover .tt-logo-mark{transform:translateY(-2px) scale(1.05)}
+.tt-logo:hover .tt-logo-mark img{filter:drop-shadow(0 0 3px rgba(255,255,255,.95)) drop-shadow(0 0 10px rgba(255,255,255,.5))}
 @keyframes ttLogoRingSpin{to{--tt-logo-hue:360deg}}
 @keyframes ttLogoShimmer{0%{background-position:0% center}100%{background-position:200% center}}
 @keyframes ttLogoAura{0%,100%{opacity:.4;transform:scale(.95)}50%{opacity:.9;transform:scale(1.06)}}
