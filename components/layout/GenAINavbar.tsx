@@ -8,9 +8,10 @@ import { Menu, X, ArrowLeft, ExternalLink } from 'lucide-react'
 import ThemeToggle from '@/components/ui/ThemeToggle'
 
 const NAV_LINKS = [
-  { label: 'Home',       href: '/', color: '#22d3ee', glow: 'rgba(34,211,238,0.18)'  },
-  { label: 'About',      href: '/about',    color: '#a78bfa', glow: 'rgba(167,139,250,0.18)' },
-  { label: 'Contact Us', href: '/contact',  color: '#f472b6', glow: 'rgba(244,114,182,0.18)' },
+  // color = dark theme (bright); lightColor = deep variant for the light bar
+  { label: 'Home',       href: '/',        color: '#22d3ee', lightColor: '#0e7490', glow: 'rgba(34,211,238,0.18)'  },
+  { label: 'About',      href: '/about',   color: '#a78bfa', lightColor: '#6d28d9', glow: 'rgba(167,139,250,0.18)' },
+  { label: 'Contact Us', href: '/contact', color: '#f472b6', lightColor: '#be185d', glow: 'rgba(244,114,182,0.18)' },
 ]
 
 export default function GenAINavbar() {
@@ -95,16 +96,16 @@ export default function GenAINavbar() {
                   <Link
                     key={link.label}
                     href={link.href}
-                    className="px-4 py-2 text-sm font-body font-bold rounded-xl transition-all duration-200"
+                    className="genai-tab px-4 py-2 text-sm font-body font-bold rounded-xl transition-all duration-200"
                     style={{
-                      // each tab carries its own colour at all times — bright and legible
-                      // over the transparent bar; active state adds the glow chip
-                      color: link.color,
+                      // per-tab colour via CSS vars so html.light can swap to the
+                      // deep variant (bright hues + dark shadow wash out on the light bar)
+                      ['--tab-c' as string]: link.color,
+                      ['--tab-cl' as string]: link.lightColor,
                       opacity: active ? 1 : 0.92,
-                      textShadow: '0 1px 8px rgba(8,21,35,0.65)',
                       background: active ? link.glow : 'transparent',
                       boxShadow: active ? `0 0 12px ${link.glow}` : 'none',
-                    }}
+                    } as React.CSSProperties}
                   >
                     {link.label}
                   </Link>
