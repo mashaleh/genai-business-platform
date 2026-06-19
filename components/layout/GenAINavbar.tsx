@@ -54,20 +54,9 @@ export default function GenAINavbar() {
           className="border-b transition-colors duration-300"
           style={{ borderColor: scrolled ? 'rgba(43,196,182,0.08)' : 'transparent', background: 'transparent' }}
         >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center h-8">
-            {isHome ? (
-              <a
-                href="https://techtelligence.ae"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 text-[11px] font-body font-semibold transition-all duration-200 hover:gap-2"
-                style={{ color: 'rgba(34,211,238,0.8)' }}
-              >
-                <ArrowLeft className="w-3 h-3" />
-                Back to TechTelligence.ae
-                <ExternalLink className="w-2.5 h-2.5 opacity-60" />
-              </a>
-            ) : (
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-9">
+            {/* In-section back (sub-pages only) */}
+            {!isHome ? (
               <button
                 onClick={() => router.back()}
                 className="inline-flex items-center gap-1.5 text-[11px] font-body font-semibold transition-all duration-200 hover:gap-2"
@@ -76,7 +65,17 @@ export default function GenAINavbar() {
                 <ArrowLeft className="w-3 h-3" />
                 Back
               </button>
-            )}
+            ) : <span />}
+
+            {/* Return to the main flagship site — matches the ecosystem button */}
+            <a href="https://techtelligence.ae" className="return-home" aria-label="Return to TechTelligence main site">
+              <svg className="rh-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <path d="m3 10.8 9-7.8 9 7.8" />
+                <path d="M5.2 9.2V21h13.6V9.2" />
+              </svg>
+              <span className="rh-label">techtelligence.ae</span>
+              <span className="rh-dot" aria-hidden="true" />
+            </a>
           </div>
         </div>
 
